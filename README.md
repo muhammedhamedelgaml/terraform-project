@@ -1,2 +1,2 @@
 # terraform-project
-# terraform-project
+![Architecture Diagram](project.png)
