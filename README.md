@@ -57,7 +57,6 @@ This repository contains the full-stack application (React frontend + Node.js ba
 ### Nginx Reverse Proxy (Public Subnets)
 - Acts as the first point of entry.
 - Routes incoming traffic to the internal load balancer.
-- Optional: SSL/TLS termination, caching, basic rate limiting.
 
 ### Web Application Backends (Private Subnets)
 - Hosts application code from the [Node.js + React Repo](https://github.com/muhammedhamedelgaml/fullStack-node.js-react).
@@ -69,7 +68,7 @@ This repository contains the full-stack application (React frontend + Node.js ba
 ## 🔐 Security Best Practices
 
 - Use **Security Groups** to tightly control access between layers.
-- Public ALB: Open only HTTP/HTTPS to the world.
+- Public ALB: Open only HTTP to the world.
 - Nginx EC2s: Accept traffic only from Public ALB.
 - Internal ALB: Accept traffic only from Nginx EC2s.
 - Backend EC2s: Accept traffic only from Internal ALB.
@@ -89,7 +88,7 @@ This repository contains the full-stack application (React frontend + Node.js ba
 ### Prerequisites
 - AWS CLI configured
 - IAM permissions to provision EC2, ALB, VPC, IGW, NAT, etc.
-- Terraform, AWS CDK, or CloudFormation for IaC
+- Terraform,  Optional(remote backend - you can delete backend.tf file if you won't )
 
 ### Suggested Setup Steps
 1. Create the VPC and subnets.
