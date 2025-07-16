@@ -19,35 +19,6 @@ This repository contains the full-stack application (React frontend + Node.js ba
 
 ---
 
-## 🏗️ Architecture Components
-
-
-  
-
-Internet
-   │
-   ▼
-[Internet Gateway]
-   │
-   ▼
-[Public ALB]
-   │
-   ▼
-[Public Subnets]
-   ├── EC2 Nginx Reverse Proxy (Nginx 1)
-   └── EC2 Nginx Reverse Proxy (Nginx 2)
-   │
-   ▼
-[Internal ALB]
-   │
-   ▼
-[Private Subnets]
-   ├── EC2 Web App ( Node.js 1)
-   └── EC2 Web App ( Node.js 2)
-   │
-   ▼
-[NAT Gateway] ← [Internet Gateway for egress traffic]
-----
 
 
 
