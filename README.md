@@ -47,10 +47,10 @@ Internet
    │
    ▼
 [NAT Gateway] ← [Internet Gateway for egress traffic]
+----
 
 
 
----
 
 ## 🌐 Network Design
 
