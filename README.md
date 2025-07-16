@@ -117,29 +117,33 @@ This repository contains the full-stack application (React frontend + Node.js ba
 
 #### 🚀 Usage
 
+1. **clone repo**
+    ```
+    git clone https://github.com/muhammedhamedelgaml/terraform-project.git 
+    cd terraform-project
 
-1. **Initialize Backend**
+2. **Initialize Backend**
    ```bash
    terraform init
 
-2. **create new work space(Optional)**
+3. **create new work space(Optional)**
    ```bash
    terraform workspace new dev   
 
-3. **Terraform plan**
+4. **Terraform plan**
    ```bash
    terraform plan   
   
 
 
-4. **Terraform apply**
+5. **Terraform apply**
    ```bash
    terraform apply 
 
 
 
 
-5. **Terraform CleanUp Delete resources**
+6. **Terraform CleanUp Delete resources**
    ```bash
    terraform destroy
 -------
