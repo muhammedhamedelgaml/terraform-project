@@ -9,6 +9,10 @@ resource "aws_instance" "proxy" {
   tags                      = { Name = "nginx-proxy-${count.index + 1}" }
   key_name                  = "ubuntu"
 
+  #  provisioner "local-exec" {
+  #   command = "echo public-ip${count.index + 1} ${self.public_ip} >> all-ips.txt"  
+  #      }
+
     provisioner "file" {
     content     = data.template_file.nginx_conf.rendered
     destination = "/tmp/nginx.conf"
@@ -48,6 +52,9 @@ resource "aws_instance" "app" {
   key_name                  = "ubuntu"
 
 
+ #  provisioner "local-exec" {
+  #   command = "echo public-ip${count.index + 1} ${self.public_ip} >> all-ips.txt"  
+  #      }
 
   user_data = file("./template/startApp_backend.sh")
 }
