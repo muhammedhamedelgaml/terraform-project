@@ -98,13 +98,13 @@ This repository contains the full-stack application (React frontend + Node.js ba
 5. Set up routing and security groups.
 6. Clone and deploy the full-stack app at ec2s from :
    [https://github.com/muhammedhamedelgaml/fullStack-node.js-react](https://github.com/muhammedhamedelgaml/fullStack-node.js-react)
-7. 
+
 
 ---
 
 
 
 
-
+### LoadBalancer link 
 ![ELB LINK](screenshot/app.png)
 
