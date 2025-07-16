@@ -2,6 +2,7 @@
 resource "aws_instance" "proxy" {
   count                     = 2
   ami                       = "ami-0150ccaf51ab55a51"
+  #ami                        =  data.aws_ami.amazon_linux.id
   instance_type             = "t2.micro"
   subnet_id                 = aws_subnet.public[count.index].id
   vpc_security_group_ids    = [aws_security_group.proxy_sg.id]
@@ -45,6 +46,7 @@ resource "aws_instance" "proxy" {
 resource "aws_instance" "app" {
   count                     = 2
   ami                       = "ami-0150ccaf51ab55a51"
+  #ami                        =  data.aws_ami.amazon_linux.id
   instance_type             = "t2.micro"
   subnet_id                 = aws_subnet.private[count.index].id
   vpc_security_group_ids    = [aws_security_group.app_sg.id]
@@ -58,3 +60,17 @@ resource "aws_instance" "app" {
 
   user_data = file("./template/startApp_backend.sh")
 }
+
+
+
+
+# data "aws_ami" "amazon_linux" {
+#   most_recent = true
+
+#   filter {
+#     name   = "name"
+#     values = ["amzn2-ami-hvm-*-x86_64-gp2"]
+#   }
+
+#   owners = ["amazon"] 
+# }
