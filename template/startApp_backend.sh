@@ -1,32 +1,18 @@
 #!/bin/bash
 
-# -----------------------------
-# 1. Disable broken Cassandra repo (optional if not present)
-# -----------------------------
+
+# 1. Disable broken Cassandra repo 
 sudo sed -i 's/enabled=1/enabled=0/' /etc/yum.repos.d/cassandra.repo 2>/dev/null || true
 
-# -----------------------------
 # 2. Update and install required packages
-# -----------------------------
+
 sudo yum update -y
 sudo yum install -y git
 
-# -----------------------------
-# 3. Install NVM & Node.js (LTS)
-# -----------------------------
-export NVM_DIR="/home/ec2-user/.nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# 3.  Node.js (LTS)
 
-# Load NVM for current script
-source "$NVM_DIR/nvm.sh"
-
-nvm install --lts
-nvm use --lts
-
-# Make NVM load in future shell sessions
-echo 'export NVM_DIR="$HOME/.nvm"' >> /home/ec2-user/.bashrc
-echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> /home/ec2-user/.bashrc
-chown ec2-user:ec2-user /home/ec2-user/.bashrc
+curl -fsSL https://rpm.nodesource.com/setup_18.x | sudo bash -
+sudo yum install -y nodejs
 
 
 
@@ -39,7 +25,8 @@ cd fullStack-node.js-react
 # -----------------------------
 # 5. Setup & run backend (Node.js app on port 5000)
 # -----------------------------
+
 cd backend
-npm install
-nohup node index.js > backend.log 2>&1 &
+sudo npm install
+node index.js > backend.log 2>&1 &
 
