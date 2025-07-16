@@ -6,4 +6,5 @@ This project provisions a complete **multi-tier architecture** using **Terraform
 
 
 
+![ELB LINK](screenshot/app.png)
 
