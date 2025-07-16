@@ -11,23 +11,26 @@ events {
 }
 
 http {
+    include       mime.types;
+    default_type  application/octet-stream;
+    server {
+        listen 80;
+        server_name _;
 
- server {
-    listen 80;
+        # Serve static frontend files
+        root /usr/share/nginx/html;
+        index index.html;
 
-    # React frontend via Vite (Dev mode)
-    location / {
-        proxy_pass http://${internal_alb_IP};
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
+   # Frontend app
+    # All other routes
+        location / {
+        try_files $uri  /index.html;
+            }
+
 
     #  Node.js API backend 
     location /api/ {
-        proxy_pass http://${internal_alb_IP};
+        proxy_pass http://${internal_alb_dns}:5000;
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
