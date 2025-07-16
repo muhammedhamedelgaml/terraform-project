@@ -1,7 +1,6 @@
 # Internal Application Load Balancer (ALB) Setup
-
 resource "aws_lb" "internal" {
-  name               = "internal-alb"
+  name               = "internalalb"  # changed from "internal-alb" to be valid
   internal           = true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_internal_sg.id]
@@ -42,7 +41,7 @@ resource "aws_lb_listener" "public_http" {
 resource "aws_lb_target_group_attachment" "nginx_instances" {
   count            = 2
   target_group_arn = aws_lb_target_group.nginx_tg.arn
-  target_id        = aws_instance.nginx[count.index].id
+  target_id        = aws_instance.proxy[count.index].id  # fixed resource name from "nginx" to "proxy"
   port             = 80
 }
 
@@ -57,7 +56,7 @@ resource "aws_lb_target_group" "backend_tg" {
 # Internal ALB Listener (HTTP 80)
 resource "aws_lb_listener" "internal_http" {
   load_balancer_arn = aws_lb.internal.arn
-  port              = 80
+  port              = 5000
   protocol          = "HTTP"
 
   default_action {
@@ -72,4 +71,13 @@ resource "aws_lb_target_group_attachment" "backend_app" {
   target_group_arn = aws_lb_target_group.backend_tg.arn
   target_id        = aws_instance.app[count.index].id
   port             = 5000
+}
+
+
+
+data "template_file" "nginx_conf" {
+  template = file("./template/nginx.conf.tpl")
+  vars = {
+    internal_alb_dns = aws_lb.internal.dns_name
+  }
 }
