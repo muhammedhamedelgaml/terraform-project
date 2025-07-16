@@ -102,9 +102,45 @@ This repository contains the full-stack application (React frontend + Node.js ba
 
 ---
 
-
-
-
 ### LoadBalancer link 
 ![ELB LINK](screenshot/app.png)
+
+## 🔧 Prerequisites
+- **Terraform**: [Install Terraform](https://www.terraform.io/downloads)
+- **AWS CLI**: [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- **AWS Credentials**: Configure the CLI with:
+  ```bash
+  aws configure
+  ```
+
+
+
+#### 🚀 Usage
+
+
+1. **Initialize Backend**
+   ```bash
+   terraform init
+
+2. **create new work space(Optional)**
+   ```bash
+   terraform workspace new dev   
+
+3. **Terraform plan**
+   ```bash
+   terraform plan   
+  
+
+
+4. **Terraform apply**
+   ```bash
+   terraform apply 
+
+
+
+
+5. **Terraform CleanUp Delete resources**
+   ```bash
+   terraform destroy
+-------
 
