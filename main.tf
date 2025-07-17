@@ -7,7 +7,7 @@ module "vpc" {
 }
 
 module "security_group" {
-  source  = "./modules/security-group"
+  source  = "./modules/sg"
   vpc_id  = module.vpc.vpc_id
 }
 
