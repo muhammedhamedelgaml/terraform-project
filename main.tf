@@ -24,3 +24,9 @@ module "ec2" {
   frontend_script_path = "./template/startApp_frontend.sh"
   backend_script_path  = "./template/startApp_backend.sh"
 }
+
+
+module "security_group" {
+  source  = "./modules/security-group"
+  vpc_id  = module.vpc.vpc_id
+}
