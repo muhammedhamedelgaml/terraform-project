@@ -27,3 +27,16 @@ module "ec2" {
   frontend_script_path = "./template/startApp_frontend.sh"
   backend_script_path  = "./template/startApp_backend.sh"
 }
+
+
+module "elb" {
+  source = "./modules/elb"
+
+  vpc_id             = module.vpc.vpc_id
+  public_subnet_ids  = module.vpc.public_subnet_ids
+  private_subnet_ids = module.vpc.private_subnet_ids
+  alb_public_sg_id   = module.security_group.alb_public_sg_id
+  alb_internal_sg_id = module.security_group.alb_internal_sg_id
+  proxy_instance_ids = module.ec2.proxy_instance_ids
+  app_instance_ids   = module.ec2.app_instance_ids
+}
