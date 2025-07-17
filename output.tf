@@ -1,6 +1,7 @@
-output "public_lb" {
-  value =  aws_lb.public.dns_name
-       
+output "public_alb_dns" {
+  value = module.elb.public_lb_dns
 }
 
-
+output "internal_alb_dns" {
+  value = module.elb.internal_lb_dns
+}
