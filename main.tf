@@ -19,8 +19,8 @@ module "ec2" {
   private_subnet_ids   = module.vpc.private_subnet_ids
   proxy_sg_id          = module.security_group.proxy_sg_id
   app_sg_id            = module.security_group.app_sg_id
-  key_name             = "ubuntu"
-  private_key_path     = "/home/muhammed-hamed/Downloads/ubuntu.pem"
+  key_name             = "redhat"
+  private_key_path     = "/home/muhammed-hamed/Downloads/redhat.pem"
   ssh_user             = "ec2-user"
 
   nginx_conf           = data.template_file.nginx_conf.rendered
