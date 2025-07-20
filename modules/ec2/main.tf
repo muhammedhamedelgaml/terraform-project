@@ -1,7 +1,7 @@
 # EC2 Instances - Proxies
 resource "aws_instance" "proxy" {
   count                     = 2
-  ami                       = var.ami
+  ami                       = data.aws_ami.amazon_linux.id
   instance_type             = var.instance_type
   subnet_id                 = var.public_subnet_ids[count.index]
   vpc_security_group_ids    = [var.proxy_sg_id]
@@ -42,7 +42,7 @@ resource "aws_instance" "proxy" {
 # EC2 Instances - Web App
 resource "aws_instance" "app" {
   count                     = 2
-  ami                       = var.ami
+  ami                       = data.aws_ami.amazon_linux.id
   instance_type             = var.instance_type
   subnet_id                 = var.private_subnet_ids[count.index]
   vpc_security_group_ids    = [var.app_sg_id]
@@ -54,4 +54,16 @@ resource "aws_instance" "app" {
     provisioner "local-exec" {
     command = "echo priv-ip${count.index + 1} ${self.private_ip} >> all-ips.txt"  
        }
+}
+
+
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023.8.20250707.0-kernel-6.1-x86_64"] 
+         }
+
+  owners = ["amazon"] 
 }
