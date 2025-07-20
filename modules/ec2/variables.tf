@@ -1,23 +1,31 @@
-variable "ami" {}
-variable "instance_type" { default = "t2.micro" }
+variable "ami_id" {
+  type = string
+}
 
 variable "public_subnet_ids" {
   type = list(string)
 }
+
 variable "private_subnet_ids" {
   type = list(string)
 }
 
-variable "proxy_sg_id" {}
-variable "app_sg_id" {}
-
-variable "key_name" {}
-variable "private_key_path" {}
-
-variable "ssh_user" {
-  default = "ec2-user"
+variable "proxy_sg_id" {
+  type = string
 }
 
-variable "nginx_conf" {}
-variable "frontend_script_path" {}
-variable "backend_script_path" {}
+variable "app_sg_id" {
+  type = string
+}
+
+variable "key_name" {
+  type = string
+}
+
+variable "private_key_path" {
+  type = string
+}
+
+variable "nginx_conf" {
+  type = string
+}
