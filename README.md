@@ -85,7 +85,6 @@ This repository contains the full-stack application (React frontend + Node.js ba
 
 ## 🚀 Getting Started
 
-### Prerequisites
 - AWS CLI configured
 - IAM permissions to provision EC2, ALB, VPC, IGW, NAT, etc.
 - Terraform
@@ -97,8 +96,7 @@ This repository contains the full-stack application (React frontend + Node.js ba
 
 ---
 
-### LoadBalancer link 
-![ELB LINK](screenshot/app.png)
+
 
 ## 🔧 Prerequisites
 - **Terraform**: [Install Terraform](https://www.terraform.io/downloads)
@@ -142,4 +140,27 @@ This repository contains the full-stack application (React frontend + Node.js ba
    ```bash
    terraform destroy
 -------
+
+
+### cli commands
+![ ](screenshot/cli.png)
+![ ](screenshot/cli-output.png)
+
+
+### LoadBalancer link 
+![ELB LINK](screenshot/app.png)
+![ELB LINK](screenshot/backend.png)
+
+
+### Resources  
+![ ](screenshot/vpc.png)
+![ ](screenshot/ec2s.png)
+![ ](screenshot/lbs.png)
+![ ](screenshot/pub-lb.png)
+![ ](screenshot/internal-lb.png)
+#### ssh to private ec2 via bastion host (public ec2)
+![ ](screenshot/ssh-to-priv-ec2-via-bastionhost.png)
+
+
+
 
