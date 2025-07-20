@@ -55,7 +55,7 @@ resource "aws_instance" "app" {
 
 
   provisioner "local-exec" {
-    command = "echo public-ip${count.index + 1} ${self.private_ip} >> all-ips.txt"  
+    command = "echo private-ip${count.index + 1} ${self.private_ip} >> all-ips.txt"  
        }
 
   user_data = file("./template/startApp_backend.sh")
