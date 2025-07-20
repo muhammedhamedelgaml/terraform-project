@@ -1,8 +1,7 @@
-# Security Groups
-
 resource "aws_security_group" "alb_public_sg" {
   name   = "alb-public-sg"
   vpc_id = var.vpc_id
+
   ingress {
     description = "Allow HTTP from anywhere"
     from_port   = 80
@@ -30,7 +29,8 @@ resource "aws_security_group" "proxy_sg" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_public_sg.id]
   }
-      ingress {
+
+  ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -43,7 +43,6 @@ resource "aws_security_group" "proxy_sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
 }
 
 resource "aws_security_group" "alb_internal_sg" {
@@ -77,20 +76,21 @@ resource "aws_security_group" "app_sg" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_internal_sg.id]
   }
-    ingress {
+
+  ingress {
     description     = "Allow internal lb to access backend (port 80)"
     from_port       = 80
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_internal_sg.id]
   }
-    ingress {
-    description     = "ssh"
+
+  ingress {
+    description     = "SSH from proxy"
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
     security_groups = [aws_security_group.proxy_sg.id]
-
   }
 
   egress {
