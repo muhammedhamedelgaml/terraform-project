@@ -88,16 +88,11 @@ This repository contains the full-stack application (React frontend + Node.js ba
 ### Prerequisites
 - AWS CLI configured
 - IAM permissions to provision EC2, ALB, VPC, IGW, NAT, etc.
-- Terraform,  Optional(remote backend - you can delete backend.tf file if you won't )
+- Terraform
+- backend  Optional(remote backend  go to AWS and create s3 bucket and dynamodb_table with The table must have a partition key named (LockID)with a type of String. ):[terraform_Docs](https://developer.hashicorp.com/terraform/language/backend/s3) 
+ note that delete backend.tf file if you won't use remote backend
 
-### Suggested Setup Steps
-1. Create the VPC and subnets.
-2. Deploy the Internet Gateway and NAT Gateway.
-3. Configure the public and internal Application Load Balancers.
-4. Launch EC2 instances with appropriate roles (Nginx, App).
-5. Set up routing and security groups.
-6. Clone and deploy the full-stack app at ec2s from :
-   [https://github.com/muhammedhamedelgaml/fullStack-node.js-react](https://github.com/muhammedhamedelgaml/fullStack-node.js-react)
+
 
 
 ---
