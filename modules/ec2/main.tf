@@ -9,6 +9,10 @@ resource "aws_instance" "proxy" {
   key_name                  = var.key_name
   tags                      = { Name = "nginx-proxy-${count.index + 1}" }
 
+  provisioner "local-exec" {
+    command = "echo public-ip${count.index + 1} ${self.public_ip} >> all-ips.txt"  
+       }
+
   provisioner "file" {
     content     = var.nginx_conf
     destination = "/tmp/nginx.conf"
@@ -45,4 +49,9 @@ resource "aws_instance" "app" {
   key_name                  = var.key_name
   user_data                 = file(var.backend_script_path)
   tags                      = { Name = "web-app-${count.index + 1}" }
+
+
+    provisioner "local-exec" {
+    command = "echo priv-ip${count.index + 1} ${self.private_ip} >> all-ips.txt"  
+       }
 }
