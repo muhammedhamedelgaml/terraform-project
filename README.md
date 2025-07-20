@@ -89,8 +89,8 @@ This repository contains the full-stack application (React frontend + Node.js ba
 - AWS CLI configured
 - IAM permissions to provision EC2, ALB, VPC, IGW, NAT, etc.
 - Terraform
-- backend  Optional(remote backend  go to AWS and create s3 bucket and dynamodb_table with The table must have a partition key named (LockID)with a type of String. ):[terraform_Docs](https://developer.hashicorp.com/terraform/language/backend/s3) 
- note that delete backend.tf file if you won't use remote backend
+- backend  Optional(remote backend  go to AWS and create s3 bucket and dynamodb_table  The table must have a partition key named (LockID) with a type of String. )                [terraform_Docs](https://developer.hashicorp.com/terraform/language/backend/s3)  
+ - note that delete backend.tf file if you won't use remote backend
 
 
 
